@@ -1,0 +1,85 @@
+{
+  "jewelries": [
+    {
+      "id": 1,
+      "title": "Emerald Elegance Necklace",
+      "description": "A stunning green emerald pendant necklace for evening wear, handcrafted with sterling silver.",
+      "price": 450.00,
+      "image": "https://images.unsplash.com/photo-1581291518857-4e27b48ff24d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "category": "necklaces",
+      "stock": 10
+    },
+    {
+      "id": 2,
+      "title": "Pearl Drop Earrings",
+      "description": "Classic freshwater pearl earrings with gold hooks, perfect for everyday luxury.",
+      "price": 250.00,
+      "image": "https://images.unsplash.com/photo-1608043152268-8a8e7d2e9b15?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "category": "earrings",
+      "stock": 15
+    },
+    {
+      "id": 3,
+      "title": "Rose Gold Bracelet",
+      "description": "Delicate rose gold chain bracelet with charm accents, ideal for layering.",
+      "price": 320.00,
+      "image": "https://images.unsplash.com/photo-1608043152268-8a8e7d2e9b15?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "category": "bracelets",
+      "stock": 8
+    },
+    {
+      "id": 4,
+      "title": "Diamond Stud Earrings",
+      "description": "Timeless cubic zirconia diamond studs in white gold setting for a sparkling look.",
+      "price": 600.00,
+      "image": "https://images.unsplash.com/photo-1616441029813-4c5e3e7d4d8e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "category": "earrings",
+      "stock": 5
+    },
+    {
+      "id": 5,
+      "title": "Sapphire Ring",
+      "description": "Elegant blue sapphire ring with silver band, symbolizing wisdom and royalty.",
+      "price": 380.00,
+      "image": "https://images.unsplash.com/photo-1574199204673-0d2b2e0b2e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "category": "rings",
+      "stock": 12
+    },
+    {
+      "id": 6,
+      "title": "Gold Hoop Earrings",
+      "description": "Bold 14k gold hoops for a modern, feminine statement.",
+      "price": 280.00,
+      "image": "https://images.unsplash.com/photo-1681426306784-34e3a6b5a8f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "category": "earrings",
+      "stock": 20
+    },
+    {
+      "id": 7,
+      "title": "Elegant Pearl Watch",
+      "description": "A refined women's watch with a mother-of-pearl dial and slim gold bracelet, blending timeless elegance with functionality.",
+      "price": 520.00,
+      "image": "https://images.unsplash.com/photo-1524592094714-0f2687e281de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "category": "watches",
+      "stock": 7
+    },
+    {
+      "id": 8,
+      "title": "Bridal Pearl Hair Comb",
+      "description": "Delicate pearl and crystal hair comb for bridal updos, adding subtle shimmer to wedding veils or styles.",
+      "price": 180.00,
+      "image": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "category": "hair-accessories",
+      "stock": 6
+    },
+    {
+      "id": 9,
+      "title": "Crystal Bridal Crown",
+      "description": "Sparkling crystal tiara crown with floral accents, perfect for bridal ceremonies or romantic evenings.",
+      "price": 750.00,
+      "image": "https://images.unsplash.com/photo-1681426306784-34e3a6b5a8f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "category": "crowns",
+      "stock": 4
+    }
+  ]
+}
