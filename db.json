@@ -50,25 +50,25 @@
       "title": "Gold Hoop Earrings",
       "description": "Bold 14k gold hoops for a modern, feminine statement.",
       "price": 280.00,
-      "image": "https://images.unsplash.com/photo-1681426306784-34e3a6b5a8f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "image": "https://images.unsplash.com/photo-1708222171064-15cbb2bb1744?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=387",
       "category": "earrings",
       "stock": 20
     },
     {
       "id": 7,
-      "title": "Elegant Pearl Watch",
-      "description": "A refined women's watch with a mother-of-pearl dial and slim gold bracelet, blending timeless elegance with functionality.",
+      "title": "Elegant Rose Gold Watch",
+      "description": "A refined women's watch with a rose gold dial and a slim bracelet, blending timeless elegance with functionality.",
       "price": 520.00,
-      "image": "https://images.unsplash.com/photo-1524592094714-0f2687e281de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "image": "https://images.unsplash.com/photo-1602268394487-9e6ed811a177?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=435",
       "category": "watches",
       "stock": 7
     },
     {
       "id": 8,
-      "title": "Bridal Pearl Hair Comb",
+      "title": "Bridal Hair Accessory",
       "description": "Delicate pearl and crystal hair comb for bridal updos, adding subtle shimmer to wedding veils or styles.",
       "price": 180.00,
-      "image": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "image": "https://images.unsplash.com/photo-1540487282831-8626bff1254b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=906",
       "category": "hair-accessories",
       "stock": 6
     },
