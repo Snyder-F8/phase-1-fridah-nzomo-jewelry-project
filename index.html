@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier Jewels - Exquisite Jewelry Collection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Atelier Jewels</h1>
+            <p class="subtitle">Jewelry of Precious Craft – Because every piece carries a precious story</p>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li class="cart-link">
+                        <a href="#cart">Cart (<span id="cart-count">0</span>)</a>
+                    </li>
+                    <li><button id="add-new-btn">Add New Jewelry</button></li> <!-- CRUD: Create -->
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search for jewelry...">
+            </div>
+        </div>
+    </header>
+
+    <!-- ... (Hero, Materials, Products, Promotion sections remain the same) ... -->
+
+    <section id="products">
+        <h2>Our Collections</h2>
+        <div id="product-grid" class="product-grid"></div>
+    </section>
+
+    <!-- ... (Promotion section remains) ... -->
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Your Shopping Cart</h2>
+            <div id="cart-items"></div>
+            <p id="cart-total">Total: $0.00</p>
+            <button id="clear-cart">Clear Cart</button>
+        </div>
+    </div>
+
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="product-detail"></div>
+        </div>
+    </div>
+
+    <!-- New Modal for Adding Jewelry (CRUD: Create) -->
+    <div id="add-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Jewelry</h2>
+            <form id="add-form">
+                <input type="text" id="new-title" placeholder="Title" required>
+                <textarea id="new-description" placeholder="Description" required></textarea>
+                <input type="number" id="new-price" placeholder="Price" required>
+                <input type="text" id="new-image" placeholder="Image URL" required>
+                <input type="text" id="new-category" placeholder="Category (e.g., earrings)" required>
+                <input type="number" id="new-stock" placeholder="Stock" required>
+                <button type="submit">Add Item</button>
+            </form>
+        </div>
+    </div>
+
+    <a href="#" id="scroll-to-top">Scroll to Top</a>
+
+    <footer>
+        <p>&copy; 2025 Atelier Jewels. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
