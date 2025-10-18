@@ -352,6 +352,20 @@ nav ul li a:hover {
 .cart-buttons #edit-btn {
     background: #d4af37;
 }
+.fav-btn {
+    background: #ff5c8a;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.fav-btn:hover {
+    background: #e04a75;
+}
 
 /* Form Styles for Add Modal and Edit Form */
 #add-form, .edit-form {
