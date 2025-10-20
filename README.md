@@ -145,7 +145,7 @@ Filters displayed jewelry by title in real-time.
 
 Fridah Nzomo.
 Software Developer & Data Scientist
-💼 Passionate about building elegant, data-driven web solutions.
+- Passionate about building elegant, data-driven web solutions.
 
 
 ## License
