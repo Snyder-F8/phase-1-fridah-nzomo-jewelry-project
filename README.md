@@ -74,7 +74,7 @@ npm install -g json-server
       "category": "necklace",
       "stock": 10
     }
-    ....
+    // Add more products as needed
   ]
 }
 ```
@@ -134,6 +134,23 @@ Filters displayed jewelry by title in real-time.
 - Viewing Details: Click "View Details" to see product information, including description, category, and stock.
 - Managing Products: Click "Add New Jewelry" in the header to add a new product. In the product details modal, use "Edit" or "Delete" to modify or remove products.
 - Cart Calculations: The cart displays subtotal, VAT (16%), and total. Items can be removed individually or cleared entirely.
+
+## Future Enhancements
+- Integrate a real backend (Node.js + Express or Python Flask).
+- Add authentication for admin access.
+- Include image uploads instead of URL inputs.
+- Implement payment gateway simulation.
+
+## Author
+
+Fridah Nzomo.
+Software Developer & Data Scientist
+💼 Passionate about building elegant, data-driven web solutions.
+
+
+## License
+
+This project is open-source and available under the MIT License.
 
 
 
