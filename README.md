@@ -74,7 +74,7 @@ npm install -g json-server
       "category": "necklace",
       "stock": 10
     }
-    // Add more products as needed
+    ....
   ]
 }
 ```
