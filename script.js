@@ -16,19 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const API_BASE = 'http://localhost:3000/jewelries'; // json-server base
 
-    // Smooth scrolling for navigation links
+    // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href').substring(1);
             const target = document.getElementById(targetId);
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
     });
 
-    // CRUD: Read (Fetch all)
+    // Fetch products
     async function fetchProducts() {
         try {
             const response = await fetch(API_BASE);
@@ -42,86 +40,131 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Render products (uses forEach)
+    // Render product cards
     function renderProducts(items) {
         productGrid.innerHTML = '';
         items.forEach(item => {
+            if (!item.id || !item.title || !item.price) return;
             const card = document.createElement('div');
             card.classList.add('product-card');
             card.innerHTML = `
                 <img src="${item.image}" alt="${item.title}">
                 <h4>${item.title}</h4>
-                <p>$${item.price.toFixed(2)}</p>
-                <button onclick="addToCart(${item.id})">Add to Cart</button>
-                <button class="view-details" onclick="viewDetails(${item.id})">View Details</button>
+                <p>KSH ${parseFloat(item.price).toFixed(2)}</p>
+                <button class="add-to-cart" data-id="${item.id}">Add to Cart</button>
+                <button class="view-details" data-id="${item.id}">View Details</button>
             `;
             productGrid.appendChild(card);
         });
+
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', (e) => addToCart(e.target.dataset.id));
+        });
+
+        document.querySelectorAll('.view-details').forEach(btn => {
+            btn.addEventListener('click', (e) => viewDetails(e.target.dataset.id));
+        });
     }
 
-    // Search (uses filter)
+    // Search filter
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase();
         const filtered = products.filter(item => item.title.toLowerCase().includes(query));
         renderProducts(filtered);
     });
 
-    // Cart: Add
+    // Add to cart
     window.addToCart = function(id) {
-        const item = products.find(p => p.id === id);
-        const cartItem = cart.find(c => c.id === id);
+        id = parseInt(id);
+        const item = products.find(p => parseInt(p.id) === id);
+        if (!item) {
+            alert("Product not found. Try refreshing the page.");
+            return;
+        }
+
+        const cartItem = cart.find(c => c.id === item.id);
         if (cartItem) {
             cartItem.quantity += 1;
         } else {
-            cart.push({ ...item, quantity: 1 });
+            cart.push({
+                id: item.id,
+                title: item.title,
+                price: parseFloat(item.price),
+                quantity: 1
+            });
         }
+
         updateCart();
     };
 
-    // Cart: Update display (uses reduce and forEach)
+    // Updated Cart Display with Subtotal, VAT, and Total
     function updateCart() {
         localStorage.setItem('cart', JSON.stringify(cart));
         cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
         cartItems.innerHTML = '';
-        let total = 0;
+        let subtotal = 0;
+
         cart.forEach(item => {
             const div = document.createElement('div');
             div.className = 'cart-item';
             div.innerHTML = `
                 <span>${item.title} (x${item.quantity})</span>
-                <span>$${ (item.price * item.quantity).toFixed(2) }</span>
-                <button onclick="removeFromCart(${item.id})">Remove</button>
+                <span>KSH ${(item.price * item.quantity).toFixed(2)}</span>
+                <button class="remove-btn" data-id="${item.id}"
+                    style="background-color:red;color:white;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;">
+                    Remove
+                </button>
             `;
             cartItems.appendChild(div);
-            total += item.price * item.quantity;
+            subtotal += item.price * item.quantity;
         });
-        cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+
+        const vat = subtotal * 0.16;
+        const total = subtotal + vat;
+
+        cartTotal.innerHTML = `
+            <p>Subtotal: <strong>KSH ${subtotal.toFixed(2)}</strong></p>
+            <p>VAT (16%): <strong>KSH ${vat.toFixed(2)}</strong></p>
+            <p><strong>Total: KSH ${total.toFixed(2)}</strong></p>
+        `;
+
+        // Remove button (event delegation)
+        cartItems.onclick = function(e) {
+            const btn = e.target.closest('.remove-btn');
+            if (!btn) return;
+            const id = parseInt(btn.getAttribute('data-id'));
+            if (!isNaN(id)) removeFromCart(id);
+        };
     }
 
-    // Cart: Remove item
-    window.removeFromCart = function(id) {
-        cart = cart.filter(c => c.id !== id);
+    // Completely remove an item (regardless of quantity)
+    function removeFromCart(id) {
+        const numericId = parseInt(id);
+        if (isNaN(numericId)) return;
+        cart = cart.filter(c => parseInt(c.id) !== numericId);
+        localStorage.setItem('cart', JSON.stringify(cart));
         updateCart();
-    };
+    }
 
-    // Clear cart
+    // Clear all items
     clearCartBtn.addEventListener('click', () => {
         cart = [];
         updateCart();
     });
 
-    // CRUD: View Details (Read one, with Edit/Delete)
+    // View product details
     window.viewDetails = async function(id) {
-        const item = products.find(p => p.id === id) || await fetchOne(id);
+        id = parseInt(id);
+        const item = products.find(p => parseInt(p.id) === id) || await fetchOne(id);
         const detailContent = document.getElementById('product-detail');
         detailContent.innerHTML = `
             <div class="product-detail-content">
                 <img src="${item.image}" alt="${item.title}">
                 <h3>${item.title}</h3>
                 <p>${item.description}</p>
-                <p>Price: $${item.price.toFixed(2)}</p>
+                <p>Price: KSH ${item.price.toFixed(2)}</p>
                 <p>Category: ${item.category} | Stock: ${item.stock}</p>
-                <button onclick="addToCart(${item.id})">Add to Cart</button>
+                <button class="add-to-cart" data-id="${item.id}">Add to Cart</button>
                 <div class="cart-buttons">
                     <button id="edit-btn">Edit</button>
                     <button id="delete-btn">Delete</button>
@@ -131,20 +174,17 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         productModal.style.display = 'block';
 
-        // Edit button -> Show form (Update prep)
+        document.querySelector('.add-to-cart').addEventListener('click', () => addToCart(item.id));
         document.getElementById('edit-btn').addEventListener('click', () => showEditForm(item));
-
-        // Delete button (CRUD: Delete)
         document.getElementById('delete-btn').addEventListener('click', () => deleteItem(id));
     };
 
-    // Helper: Fetch one item
     async function fetchOne(id) {
         const response = await fetch(`${API_BASE}/${id}`);
         return await response.json();
     }
 
-    // Show Edit Form (CRUD: Update)
+    // Edit product
     function showEditForm(item) {
         const container = document.getElementById('edit-form-container');
         container.innerHTML = `
@@ -161,7 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
         container.querySelector('.edit-form').addEventListener('submit', handleUpdate);
     }
 
-    // CRUD: Update
     async function handleUpdate(e) {
         e.preventDefault();
         const form = e.target;
@@ -183,14 +222,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error('Update failed');
             alert('Item updated!');
             productModal.style.display = 'none';
-            fetchProducts(); // Refresh list
+            fetchProducts();
         } catch (error) {
             console.error(error);
             alert('Update error');
         }
     }
 
-    // CRUD: Delete
+    // Delete item
     async function deleteItem(id) {
         if (!confirm('Delete this item?')) return;
         try {
@@ -198,14 +237,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error('Delete failed');
             alert('Item deleted!');
             productModal.style.display = 'none';
-            fetchProducts(); // Refresh
+            fetchProducts();
         } catch (error) {
             console.error(error);
             alert('Delete error');
         }
     }
 
-    // CRUD: Create (Add New)
+    // Add new product
     addNewBtn.addEventListener('click', () => addModal.style.display = 'block');
     addForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -227,14 +266,14 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('New item added!');
             addModal.style.display = 'none';
             addForm.reset();
-            fetchProducts(); // Refresh
+            fetchProducts();
         } catch (error) {
             console.error(error);
             alert('Add error');
         }
     });
 
-    // Modal closes (all modals)
+    // Close modals
     document.querySelectorAll('.close').forEach(close => {
         close.addEventListener('click', () => {
             cartModal.style.display = 'none';
@@ -250,16 +289,15 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCart();
     });
 
-    // Scroll to top
+    // Scroll-to-top
     window.addEventListener('scroll', () => {
         scrollToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
     });
-
     scrollToTop.addEventListener('click', (e) => {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Initial load
+    // Initialize
     fetchProducts();
 });
